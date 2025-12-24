@@ -1,0 +1,55 @@
+# ======================
+# Environment variables
+# ======================
+.env
+.env.*
+!.env.example
+
+# ======================
+# Django
+# ======================
+db.sqlite3
+*.sqlite3
+media/
+
+# ======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ======================
+# Virtual Environments
+# ======================
+venv/
+env/
+.venv/
+ENV/
+
+# ======================
+# Django cache & logs
+# ======================
+*.log
+local_settings.py
+
+# ======================
+# Migrations (optional)
+# ======================
+# Uncomment if you want to ignore migrations
+# migrations/
+# !migrations/__init__.py
+
+# ======================
+# Static files (optional)
+# ======================
+staticfiles/
+
+# ======================
+# IDE / OS
+# ======================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
