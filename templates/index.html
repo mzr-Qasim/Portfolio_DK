@@ -50,8 +50,10 @@
 		<div class="container">
 			<div class="topbar_inner">
 				<div class="logo">
-					<a href="#">
-						<img src="img/logo/dark.png" alt="" />
+					<a href="{% url 'home' %}">
+						{% for logo in site_logo %}
+						<img src="{{logo.site_logo.url}}" alt="" />
+						{% endfor %}
 					</a>
 				</div>
 				<div class="menu">
@@ -76,9 +78,9 @@
 								</a>
 							</li>
 							<li>
-								<a href="#news">
-									<span class="first">News</span>
-									<span class="second">News</span>	
+								<a href="#blogs">
+									<span class="first">Blogs</span>
+									<span class="second">Blogs</span>	
 								</a>
 							</li>
 							<li>
@@ -101,7 +103,7 @@
 			<div class="container bigger">
 				<div class="topbar_in">
 					<div class="logo">
-						<a href="#"><img src="img/logo/dark.png" alt="" /></a>
+						<a href="{% url 'home' %}">{% for logo in site_logo %}<img src="{{logo.site_logo.url}}" alt="" />{% endfor %}</a>
 					</div>
 					<div class="my_trigger">
 						<div class="hamburger hamburger--collapse-r">
@@ -120,7 +122,7 @@
 						<li><a href="#home">Home</a></li>
 						<li><a href="#about">About</a></li>
 						<li><a href="#portfolio">Portfolio</a></li>
-						<li><a href="#news">News</a></li>
+						<li><a href="#blogs">Blogs</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
 				</div>
@@ -150,7 +152,7 @@
 						{% for main_hero in hero_section %}
 						<h3 class="stroke">{{main_hero.first_name}}</h3>
 						<h3>{{main_hero.last_name}}</h3>
-						<span>{{main_hero.profession_1}} &amp; {{main_hero.profession_2}}</span>
+						<span style="color: black;">{{main_hero.profession_1}} &amp; {{main_hero.profession_2}}</span>
 						{% endfor %}
 					</div>
 				</div>
@@ -204,42 +206,17 @@
 		<div class="container">
 			<div class="service_inner">
 				<ul class="owl-carousel">
+					{% for service in service_section %}
 					<li class="item">
 						<div class="list_inner">
-							<img class="svg" src="img/svg/code.svg" alt="" />
+							<img class="svg" src="{{service.service_img.url}}" alt="" />
 							<div class="details">
-								<h3>Web Development</h3>
-								<p>Web design is a similar process of creation, with the intention intention of the pre presenting and design...</p>
+								<h3>{{service.service_title}}</h3>
+								<p>{{service.service_info}}</p>
 							</div>
 						</div>
 					</li>
-					<li class="item">
-						<div class="list_inner">
-							<img class="svg" src="img/svg/creativity.svg" alt="" />
-							<div class="details">
-								<h3>Creative Design</h3>
-								<p>Web design is a similar process of creation, with the intention intention of the pre presenting and design...</p>
-							</div>
-						</div>
-					</li>
-					<li class="item">
-						<div class="list_inner">
-							<img class="svg" src="img/svg/telegram.svg" alt="" />
-							<div class="details">
-								<h3>Brand Identity</h3>
-								<p>Web design is a similar process of creation, with the intention intention of the pre presenting and design...</p>
-							</div>
-						</div>
-					</li>
-					<li class="item">
-						<div class="list_inner">
-							<img class="svg" src="img/svg/photoshop.svg" alt="" />
-							<div class="details">
-								<h3>Adobe Photoshop</h3>
-								<p>Web design is a similar process of creation, with the intention intention of the pre presenting and design...</p>
-							</div>
-						</div>
-					</li>
+					{% endfor %}
 				</ul>
 			</div>
 		</div>
@@ -663,36 +640,37 @@
 	<!-- /TESTIMONIALS -->
 	
 	<!-- NEWS -->
-	<div class="waxon_tm_news" id="news">
+	<div class="waxon_tm_news" id="blogs">
 		<div class="container">
 			<div class="waxon_tm_main_title">
 				<div class="title">
-					<h3>Latest News<span class="bg">News</span></h3>
+					<h3>Latest Blogs<span class="bg">Blogs</span></h3>
 				</div>
 			</div>
 			<div class="news_inner">
 				<ul>
+					{% for blog in blog_section %}
 					<li class="wow fadeInDown" data-wow-duration="0.8s">
 						<div class="list_inner">
 							<div class="image">
-								<img src="img/thumbs/4-3.jpg" alt="" />
-								<div class="main" data-img-url="img/news/1.jpg"></div>
+								<img src="{{blog.blog_img.url}}" alt="" />
+								<div class="main" data-img-url="{{blog.blog_img.url}}"></div>
 								<a class="full_link" href="#"></a>
 							</div>
 							<div class="details">
 								<div class="extra">
-									<p class="date">By <a href="#">Alex Watson</a> <span>Sep 27, 2023</span></p>
+									<p class="date">By <a href="#news">{{ blog.author_name }}</a> <span>{{ blog.created_at|date:"M d, Y" }}</span></p>
 								</div>
-								<h3 class="title"><a href="#">Developers watch out for these burnout symptoms</a></h3>
+								<h3 class="title"><a href="#">{{ blog.blog_title }}</a></h3>
 							</div>
 							
 							<!-- Modalbox Info Start -->
 							<div class="news_hidden_details">
 								<div class="news_popup_informations">
 									<div class="text">
-										<p>Waxon is a leading web design agency with an award-winning design team that creates innovative, effective websites that capture your brand, improve your conversion rates, and maximize your revenue to help grow your business and achieve your goals.</p>
-										<p>In today’s digital world, your website is the first interaction consumers have with your business. That's why almost 95 percent of a user’s first impression relates to web design. It’s also why web design services can have an immense impact on your company’s bottom line.</p>
-										<p>That’s why more companies are not only reevaluating their website’s design but also partnering with Waxon, the web design agency that’s driven more than $2.4 billion in revenue for its clients. With over 50 web design awards under our belt, we're confident we can design a custom website that drives sales for your unique business.</p>
+										{% for para in blog.paragraphs.all %}
+										<p>{{ para.content }}</p>
+										{% endfor %}
 									</div>
 								</div>
 							</div>
@@ -700,62 +678,7 @@
 							
 						</div>
 					</li>
-					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.2s">
-						<div class="list_inner">
-							<div class="image">
-								<img src="img/thumbs/4-3.jpg" alt="" />
-								<div class="main" data-img-url="img/news/2.jpg"></div>
-								<a class="full_link" href="#"></a>
-							</div>
-							<div class="details">
-								<div class="extra">
-									<p class="date">By <a href="#">Bona Green</a> <span>Sep 22, 2023</span></p>
-								</div>
-								<h3 class="title"><a href="#">How to be appreciated for your work as a developer</a></h3>
-							</div>
-							
-							<!-- Modalbox Info Start -->
-							<div class="news_hidden_details">
-								<div class="news_popup_informations">
-									<div class="text">
-										<p>Waxon is a leading web design agency with an award-winning design team that creates innovative, effective websites that capture your brand, improve your conversion rates, and maximize your revenue to help grow your business and achieve your goals.</p>
-										<p>In today’s digital world, your website is the first interaction consumers have with your business. That's why almost 95 percent of a user’s first impression relates to web design. It’s also why web design services can have an immense impact on your company’s bottom line.</p>
-										<p>That’s why more companies are not only reevaluating their website’s design but also partnering with Waxon, the web design agency that’s driven more than $2.4 billion in revenue for its clients. With over 50 web design awards under our belt, we're confident we can design a custom website that drives sales for your unique business.</p>
-									</div>
-								</div>
-							</div>
-							<!-- /Modalbox Info End -->
-							
-						</div>
-					</li>
-					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.4s">
-						<div class="list_inner">
-							<div class="image">
-								<img src="img/thumbs/4-3.jpg" alt="" />
-								<div class="main" data-img-url="img/news/3.jpg"></div>
-								<a class="full_link" href="#"></a>
-							</div>
-							<div class="details">
-								<div class="extra">
-									<p class="date">By <a href="#">Ave Smith</a> <span>August 30, 2023</span></p>
-								</div>
-								<h3 class="title"><a href="#">How web developers can collaborate better</a></h3>
-							</div>
-							
-							<!-- Modalbox Info Start -->
-							<div class="news_hidden_details">
-								<div class="news_popup_informations">
-									<div class="text">
-										<p>Waxon is a leading web design agency with an award-winning design team that creates innovative, effective websites that capture your brand, improve your conversion rates, and maximize your revenue to help grow your business and achieve your goals.</p>
-										<p>In today’s digital world, your website is the first interaction consumers have with your business. That's why almost 95 percent of a user’s first impression relates to web design. It’s also why web design services can have an immense impact on your company’s bottom line.</p>
-										<p>That’s why more companies are not only reevaluating their website’s design but also partnering with Waxon, the web design agency that’s driven more than $2.4 billion in revenue for its clients. With over 50 web design awards under our belt, we're confident we can design a custom website that drives sales for your unique business.</p>
-									</div>
-								</div>
-							</div>
-							<!-- /Modalbox Info End -->
-							
-						</div>
-					</li>
+					{%  endfor %}
 				</ul>
 			</div>
 		</div>
@@ -778,26 +701,36 @@
 				<div class="wrapper">
 					<div class="left wow fadeInLeft" data-wow-duration="0.8s">
 						<div class="fields">
-							<form action="/" method="post" class="contact_form" id="contact_form" autocomplete="off">
-								<div class="returnmessage" data-success="Your message has been received, We will contact you soon."></div>
-								<div class="empty_notice"><span>Please Fill Required Fields</span></div>
+							{% if messages %}
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                                        role="alert">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+							<form action="{% url 'contact' %}" method="POST" class="contact_form"  autocomplete="off">
+								{% csrf_token %}
 								<div class="first">
 									<ul>
 										<li>
-											<input id="name" type="text" placeholder="Name">
+											<input id="name" type="text" placeholder="Name" required>
 										</li>
 										<li>
-											<input id="email" type="text" placeholder="Email">
+											<input id="email" type="text" placeholder="Email" required>
 										</li>
 									</ul>
 								</div>
 								<div class="last">
-									<textarea id="message" placeholder="Message"></textarea>
+									<textarea id="message" name="message" placeholder="Message" required></textarea>
 								</div>
 								<div class="waxon_tm_button" data-position="center">
-									<a id="send_message" href="#">
+									<!-- <a id="send_message" href="#">
 										<span>Send Message</span>
-									</a>
+									</a> -->
+									<button id="send_message" type="submit">Send Message</button>
 								</div>
 								
 								<!-- If you want to change mail address to yours, please open modal.php and go to line 4 -->
@@ -824,8 +757,9 @@
 			<div class="copyright_inner">
 				<ul>
 					<li class="wow fadeInDown" data-wow-duration="0.8s">
-						<span>WAXON</span>
-						<span>PORTFOLIO TEMPLATE</span>
+						{% for name in hero_section  %}
+						<span>{{name.first_name}} {{name.last_name}}</span>
+						{% endfor %}
 					</li>
 					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.2s">
 						<span>Brook 103,</span>

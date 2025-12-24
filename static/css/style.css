@@ -688,11 +688,11 @@ h1, h2, h3, h4, h5, h6{
 }
 .waxon_tm_button{
 	width: 100%;
-	height: auto;
+	height: auto; 
 	clear: both;
 	float: left;
 }
-.waxon_tm_button a{
+.waxon_tm_button a, .waxon_tm_button button{
 	text-decoration: none;
 	color: #fff;
 	background-color: var(--main-color);
@@ -706,7 +706,9 @@ h1, h2, h3, h4, h5, h6{
 	     -o-transition: all .3s ease;
 	        transition: all .3s ease;
 }
-.waxon_tm_button a:hover{
+
+
+.waxon_tm_button a:hover, .waxon_tm_button button:hover{
 	background-color: transparent;
 	color: var(--main-color);
 }
@@ -1421,8 +1423,9 @@ h1, h2, h3, h4, h5, h6{
 	text-align: left;
 	font-weight: 500;
 }
-.waxon_tm_contact .waxon_tm_button a{
+.waxon_tm_contact .waxon_tm_button button{
 	display: block;
+	width: 100%;
 }
 .waxon_tm_contact .right{
 	width: 50%;

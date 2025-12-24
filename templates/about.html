@@ -49,8 +49,10 @@
 		<div class="container">
 			<div class="topbar_inner">
 				<div class="logo">
-					<a href="#">
-						<img src="img/logo/dark.png" alt="" />
+					<a href="{% url 'home' %}">
+						{% for logo in site_logo %}
+						<img src="{{logo.site_logo.url}}" alt="" />
+						{% endfor %}
 					</a>
 				</div>
 				<div class="menu">
@@ -75,9 +77,9 @@
 								</a>
 							</li>
 							<li>
-								<a href="{% url 'home' %}#news">
-									<span class="first">News</span>
-									<span class="second">News</span>	
+								<a href="{% url 'home' %}#blogs">
+									<span class="first">Blogs</span>
+									<span class="second">Blogs</span>	
 								</a>
 							</li>
 							<li>
@@ -100,7 +102,7 @@
 			<div class="container bigger">
 				<div class="topbar_in">
 					<div class="logo">
-						<a href="#"><img src="img/logo/dark.png" alt="" /></a>
+						<a href="{% url 'home' %}">{% for logo in site_logo %}<img src="{{logo.site_logo.url}}" alt="" />{% endfor %}</a>
 					</div>
 					<div class="my_trigger">
 						<div class="hamburger hamburger--collapse-r">
@@ -119,7 +121,7 @@
 						<li><a href="{% url 'home' %}">Home</a></li>
 						<li><a href="{% url 'home' %}#about">About</a></li>
 						<li><a href="{% url 'home' %}#portfolio">Portfolio</a></li>
-						<li><a href="{% url 'home' %}#news">News</a></li>
+						<li><a href="{% url 'home' %}#blogs">Blogs</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
 				</div>
@@ -449,33 +451,7 @@
 				</div>
 				<div class="wrapper">
 					<div class="left wow fadeInLeft" data-wow-duration="0.8s">
-						<div class="fields">
-							<form action="/" method="post" class="contact_form" id="contact_form" autocomplete="off">
-								<div class="returnmessage" data-success="Your message has been received, We will contact you soon."></div>
-								<div class="empty_notice"><span>Please Fill Required Fields</span></div>
-								<div class="first">
-									<ul>
-										<li>
-											<input id="name" type="text" placeholder="Name">
-										</li>
-										<li>
-											<input id="email" type="text" placeholder="Email">
-										</li>
-									</ul>
-								</div>
-								<div class="last">
-									<textarea id="message" placeholder="Message"></textarea>
-								</div>
-								<div class="waxon_tm_button" data-position="center">
-									<a id="send_message" href="#">
-										<span>Send Message</span>
-									</a>
-								</div>
-								
-								<!-- If you want to change mail address to yours, please open modal.php and go to line 4 -->
-								
-							</form>
-						</div>
+
 					</div>
 					<div class="right wow fadeInRight" data-wow-duration="0.8s">
 						<div class="waxon_tm_map">

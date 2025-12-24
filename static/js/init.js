@@ -88,31 +88,47 @@ jQuery(document).ready(function(){
 	// -------------------------------------------------
 
 	function waxon_tm_modalbox_news(){
-	
-		var modalBox		= jQuery('.waxon_tm_modalbox');
-		var button			= jQuery('.waxon_tm_news .full_link, .waxon_tm_news ul li .details .title a');
-		var closePopup		= modalBox.find('.close');
+    var modalBox = jQuery('.waxon_tm_modalbox');
+    var button = jQuery('.waxon_tm_news .full_link, .waxon_tm_news ul li .details .title a');
+    var closePopup = modalBox.find('.close');
 
-		button.on('click',function(){
-			var element 	= jQuery(this);
-			var parent 		= element.closest('li');
-			var content 	= parent.find('.news_hidden_details').html();
-			var image		= parent.find('.image .main').data('img-url');
-			var meta		= parent.find('.details .extra').html();
-			var title		= parent.find('.details .title a').text();
-			modalBox.addClass('opened');
-			modalBox.find('.description_wrap').html(content);
-			modalBox.find('.news_popup_informations').prepend('<div class="image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
-			modalBox.find('.news_popup_informations .image').after('<div class="details"><div class="meta">'+meta+'</div><div class="title"><h3>'+title+'</h3></div></div>');
-			waxon_tm_data_images();
-			return false;
-		});
-		closePopup.on('click',function(){
-			modalBox.removeClass('opened');
-			modalBox.find('.description_wrap').html('');
-			return false;
-		});
-	}
+    button.on('click', function(){
+        var element = jQuery(this);
+        var parent = element.closest('li');
+        var content = parent.find('.news_hidden_details').html();
+        var image = parent.find('.image .main').data('img-url'); // this should contain full image URL
+        var meta = parent.find('.details .extra').html();
+        var title = parent.find('.details .title a').text();
+
+        modalBox.addClass('opened');
+        modalBox.find('.description_wrap').html(content);
+
+        // Use dynamic full image URL here
+        modalBox.find('.news_popup_informations').prepend(
+            '<div class="image">' +
+                '<img src="' + image + '" alt="" />' +
+                '<div class="main" data-img-url="' + image + '"></div>' +
+            '</div>'
+        );
+
+        modalBox.find('.news_popup_informations .image').after(
+            '<div class="details">' +
+                '<div class="meta">' + meta + '</div>' +
+                '<div class="title"><h3>' + title + '</h3></div>' +
+            '</div>'
+        );
+
+        waxon_tm_data_images(); // keep existing image handling
+        return false;
+    });
+
+    closePopup.on('click', function(){
+        modalBox.removeClass('opened');
+        modalBox.find('.description_wrap').html('');
+        return false;
+    });
+}
+
 	waxon_tm_modalbox_news();
 	
 	// -----------------------------------------------------
@@ -642,46 +658,46 @@ jQuery(document).ready(function(){
 	// ----------------    CONTACT FORM    -----------------
 	// -----------------------------------------------------
 
-	function waxon_tm_contact_form(){
+	// function waxon_tm_contact_form(){
 
-		jQuery(".contact_form #send_message").on('click', function(){
+	// 	jQuery(".contact_form #send_message").on('click', function(){
 
-			var name 		= jQuery(".contact_form #name").val();
-			var email 		= jQuery(".contact_form #email").val();
-			var message 	= jQuery(".contact_form #message").val();
-			var subject 	= jQuery(".contact_form #subject").val();
-			var success     = jQuery(".contact_form .returnmessage").data('success');
+	// 		var name 		= jQuery(".contact_form #name").val();
+	// 		var email 		= jQuery(".contact_form #email").val();
+	// 		var message 	= jQuery(".contact_form #message").val();
+	// 		var subject 	= jQuery(".contact_form #subject").val();
+	// 		var success     = jQuery(".contact_form .returnmessage").data('success');
 
-			jQuery(".contact_form .returnmessage").empty(); //To empty previous error/success message.
-			//checking for blank fields	
-			if(name===''||email===''||message===''){
+	// 		jQuery(".contact_form .returnmessage").empty(); //To empty previous error/success message.
+	// 		//checking for blank fields	
+	// 		if(name===''||email===''||message===''){
 
-				jQuery('div.empty_notice').slideDown(500).delay(2000).slideUp(500);
-			}
-			else{
-				// Returns successful data submission message when the entered information is stored in database.
-				jQuery.post("modal/contact.php",{ ajax_name: name, ajax_email: email, ajax_message:message, ajax_subject: subject}, function(data) {
+	// 			jQuery('div.empty_notice').slideDown(500).delay(2000).slideUp(500);
+	// 		}
+	// 		else{
+	// 			// Returns successful data submission message when the entered information is stored in database.
+	// 			jQuery.post("modal/contact.php",{ ajax_name: name, ajax_email: email, ajax_message:message, ajax_subject: subject}, function(data) {
 
-					jQuery(".contact_form .returnmessage").append(data);//Append returned message to message paragraph
+	// 				jQuery(".contact_form .returnmessage").append(data);//Append returned message to message paragraph
 
 
-					if(jQuery(".contact_form .returnmessage span.contact_error").length){
-						jQuery(".contact_form .returnmessage").slideDown(500).delay(2000).slideUp(500);		
-					}else{
-						jQuery(".contact_form .returnmessage").append("<span class='contact_success'>"+ success +"</span>");
-						jQuery(".contact_form .returnmessage").slideDown(500).delay(4000).slideUp(500);
-					}
+	// 				if(jQuery(".contact_form .returnmessage span.contact_error").length){
+	// 					jQuery(".contact_form .returnmessage").slideDown(500).delay(2000).slideUp(500);		
+	// 				}else{
+	// 					jQuery(".contact_form .returnmessage").append("<span class='contact_success'>"+ success +"</span>");
+	// 					jQuery(".contact_form .returnmessage").slideDown(500).delay(4000).slideUp(500);
+	// 				}
 
-					if(data===""){
-						jQuery("#contact_form")[0].reset();//To reset form fields on success
-					}
+	// 				if(data===""){
+	// 					jQuery("#contact_form")[0].reset();//To reset form fields on success
+	// 				}
 
-				});
-			}
-			return false; 
-		});
-	}
-	waxon_tm_contact_form();
+	// 			});
+	// 		}
+	// 		return false; 
+	// 	});
+	// }
+	// waxon_tm_contact_form();
 	
 	// -----------------------------------------------------
 	// ---------------   CIRCULAR PROGRESS   ---------------
