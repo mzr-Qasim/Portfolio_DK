@@ -48,10 +48,12 @@ def contact_view(request):
             except Exception as e:
                 messages.error(request, "Something went wrong. Please try again later.")
                 logger.error(f"Error sending contact message: {e}")
+                return redirect('/#contact')
 
         else:
             # Form invalid (e.g., email format wrong)
             messages.error(request, "Please enter a valid email and all required fields.")
+            return redirect('/#contact')
 
     else:
         form = ContactForm()  # empty form for GET requests

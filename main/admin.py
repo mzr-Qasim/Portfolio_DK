@@ -2,7 +2,7 @@
 
 # Register your models here.
 from django.contrib import admin
-from .models import siteLogo, heroSection, aboutSection, servicesSection, blogsSection, BlogParagraph
+from .models import siteLogo, heroSection, aboutSection, servicesSection, blogsSection, BlogParagraph, SkillsSection, LanguageSection, ContactInfo, Timeline, TimelineExperience, PresentationSection
 
 # -----------------------------
 # Pricing Section Admin
@@ -42,6 +42,42 @@ class BlogParagraphInline(admin.TabularInline):
 class BlogSectionAdmin(admin.ModelAdmin): 
     list_display = ('author_name', 'created_at', 'blog_title', 'blog_img')
     inlines = [BlogParagraphInline]
+
+
+
+
+@admin.register(SkillsSection)
+class SkillsSectionAdmin(admin.ModelAdmin): 
+    list_display = ('skill_name','skill_percent')
+
+
+@admin.register(LanguageSection)
+class LanguageSectionAdmin(admin.ModelAdmin): 
+    list_display = ('language_name','language_percent')
+
+
+
+@admin.register(ContactInfo)
+class LocationSectionAdmin(admin.ModelAdmin): 
+    list_display = ('email_address','location_description_1','location_description_2','map_location','contact_availability')
+
+
+
+class TimelineExperienceInline(admin.TabularInline):
+    model = TimelineExperience
+    extra = 1
+
+@admin.register(Timeline)
+class TimelineSectionAdmin(admin.ModelAdmin): 
+    list_display = ('start_year','end_year','institute_university_name','degree_role')
+    inlines = [TimelineExperienceInline]
+
+
+
+@admin.register(PresentationSection)
+class PresentationSectionAdmin(admin.ModelAdmin): 
+    list_display = ('title','presentation_image','presentation_link')
+
 
 
 

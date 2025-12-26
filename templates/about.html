@@ -161,9 +161,15 @@
 						{% endfor %}
 						</div>
 						<div class="waxon_tm_button" data-position="left">  <!-- Position: left, center, right -->
-							<a href="img/cv/1.jpg" download>
+							{% for about in about_section  %}
+							{% if about.cv %}
+							<a href="{{ about.cv.url }}" download>
 								<span>Download CV</span>
 							</a>
+							{% else %}
+        					<span>No CV uploaded</span>
+							{% endif %}
+							{% endfor %}
 						</div>
 					</div>
 				</div>
@@ -179,39 +185,23 @@
 					</div>
 					<div class="progress_wrapper">
 						<div class="line_progress waxon_progress">
-							<div class="progress_inner" data-value="95">
-								<span><span class="label">HTML &amp; CSS</span><span class="number">95%</span></span>
+							{% for skill in skills_section %}
+							<div class="progress_inner" data-value="{{skill.skill_percent}}">
+								<span><span class="label">{{skill.skill_name}}</span><span class="number">{{skill.skill_percent}}%</span></span>
 								<div class="background"><div class="bar"><div class="bar_in"></div></div></div>
 							</div>
-							<div class="progress_inner" data-value="80" >
-								<span><span class="label">JavaScript</span><span class="number">80%</span></span>
-								<div class="background"><div class="bar"><div class="bar_in"></div></div></div>
-							</div>
-							<div class="progress_inner" data-value="90">
-								<span><span class="label">WordPress</span><span class="number">90%</span></span>
-								<div class="background"><div class="bar"><div class="bar_in"></div></div></div>
-							</div>
+							{% endfor %}
 						</div>
 						<div class="circular_progress_bar">
 							<ul>
+								{% for language in languages_section %}
 								<li>
 									<div class="list_inner">
-										<div class="myCircle" data-value="0.95"></div>
-										<div class="title"><span>English</span></div>
+										<div class="myCircle" data-value="{{language.percent_decimal}}"></div>
+										<div class="title"><span>{{language.language_name}}</span></div>
 									</div>
 								</li>
-								<li>
-									<div class="list_inner">
-										<div class="myCircle" data-value="0.8"></div>
-										<div class="title"><span>Russian</span></div>
-									</div>
-								</li>
-								<li>
-									<div class="list_inner">
-										<div class="myCircle" data-value="0.9"></div>
-										<div class="title"><span>Arabic</span></div>
-									</div>
-								</li>
+								{% endfor %}
 							</ul>
 						</div>
 					</div>
@@ -229,101 +219,63 @@
 					<div class="study">
 						<div class="item_list">
 							<ul>
+								{% for timeline in timeline_section %}
 								<li>
 									<div class="list_inner">
 										<div class="time">
-											<span>2014 - 2016</span>
+											<span>{{timeline.start_year}} - {{timeline.end_year}}</span>
 										</div>
 										<div class="place">
-											<h3>Oxford Univercity</h3>
-											<span>Master Degree</span>
+											<h3>{{timeline.institute_university_name}}</h3>
+											<span>{{timeline.degree_role}}</span>
 										</div>
 									</div>
 								</li>
-								<li>
-									<div class="list_inner">
-										<div class="time">
-											<span>2010 - 2014</span>
-										</div>
-										<div class="place">
-											<h3>Texas Univercity</h3>
-											<span>Bachelor Degree</span>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="list_inner">
-										<div class="time">
-											<span>2008 - 2010</span>
-										</div>
-										<div class="place">
-											<h3>Simone College</h3>
-											<span>Associate Degree</span>
-										</div>
-									</div>
-								</li>
+								{% endfor %}
 							</ul>
 						</div>
 					</div>
 					<div class="job">
 						<div class="item_list">
 							<ul>
+								{% for timeline in timeline_experience_section %}
 								<li>
 									<div class="list_inner">
 										<div class="time">
-											<span>2014 - 2016</span>
+											<span>{{timeline.start_year}} - {{timeline.end_year}}</span>
 										</div>
 										<div class="place">
-											<h3>Oxford Univercity</h3>
-											<span>Master Degree</span>
+											<h3>{{timeline.title}}</h3>
+											<span>{{timeline.description}}</span>
 										</div>
 									</div>
 								</li>
-								<li>
-									<div class="list_inner">
-										<div class="time">
-											<span>2010 - 2014</span>
-										</div>
-										<div class="place">
-											<h3>Texas Univercity</h3>
-											<span>Bachelor Degree</span>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="list_inner">
-										<div class="time">
-											<span>2008 - 2010</span>
-										</div>
-										<div class="place">
-											<h3>Simone College</h3>
-											<span>Associate Degree</span>
-										</div>
-									</div>
-								</li>
+								{% endfor %}
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		{% for presentation in presentation_section %}
 		<div class="waxon_tm_presentation">
-			<div class="background jarallax" data-speed="0" data-img-url="img/presentation/1.jpg"></div>
+			<div class="background jarallax" data-speed="0" data-img-url="{{presentation.presentation_image.url}}"></div>
 			<div class="overlay"></div>
 			<div class="content">
 				<div class="fn_cs_video">
 					<span class="rounded">
-						<a class="popup-youtube" href="https://www.youtube.com/watch?v=7e90gBu4pas"></a>
+						<a class="popup-youtube" href="{{presentation.presentation_link}}s"></a>
 					</span>
 				</div>
 				<div class="text">
-					<p>I am delivering beautiful digital products for my clients</p>
+					<p>{{presentation.title}}</p>
 				</div>
 				<div class="button">
 					<a href="#contact">Contact Me</a>
 				</div>
 			</div>
 		</div>
+		{% endfor %}
 		<div class="waxon_tm_counter">
 			<div class="container">
 				<div class="counter_list">
@@ -447,15 +399,55 @@
 					</div>
 				</div>
 				<div class="desc">
-					<p>Please fill out the form on this section to contact with me. Or call between 9:00 a.m. and 8:00 p.m. ET, Monday through Friday</p>
+					{% for contact in contact_info %}
+					<p>{{contact.contact_availability}}</p>
+					{% endfor %}
 				</div>
-				<div class="wrapper">
+								<div class="wrapper">
 					<div class="left wow fadeInLeft" data-wow-duration="0.8s">
-
+						<div class="fields">
+							{% if messages %}
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                                        role="alert">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+							<form action="{% url 'contact' %}" method="POST" class="contact_form"  autocomplete="off">
+								{% csrf_token %}
+								<div class="first">
+									<ul>
+										<li>
+											<input name="name"  id="name" type="text" placeholder="Name" required>
+										</li>
+										<li>
+											<input id="email" name="email" type="text" placeholder="Email" required>
+										</li>
+									</ul>
+								</div>
+								<div class="last">
+									<textarea id="message" name="message" placeholder="Message" required></textarea>
+								</div>
+								<div class="waxon_tm_button" data-position="center">
+									<!-- <a id="send_message" href="#">
+										<span>Send Message</span>
+									</a> -->
+									<button id="send_message" type="submit">Send Message</button>
+								</div>
+								
+								<!-- If you want to change mail address to yours, please open modal.php and go to line 4 -->
+								
+							</form>
+						</div>
 					</div>
 					<div class="right wow fadeInRight" data-wow-duration="0.8s">
 						<div class="waxon_tm_map">
-							<div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="359" id="gmap_canvas" src="https://maps.google.com/maps?q=2880%20Broadway,%20New%20York&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org">123movies</a><br><style>.mapouter{position:relative;text-align:right;height:359px;width:600px;}</style><a href="https://www.embedgooglemap.net"></a><style>.gmap_canvas {overflow:hidden;background:none!important;height:359px;width:100%;}</style></div></div>
+							<div class="mapouter"><div class="gmap_canvas">{% for location in contact_info %}<iframe width="100%" height="359" id="gmap_canvas" src="{{location.map_location}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>{% endfor %}<a href="https://123movies-to.org">123movies</a><br><style>.mapouter{position:relative;text-align:right;height:359px;width:600px;}</style><a href="https://www.embedgooglemap.net"></a><style>.gmap_canvas {overflow:hidden;background:none!important;height:359px;width:100%;}</style></div></div>
+
+
 
 							<!-- Get your API here https://www.embedgooglemap.net -->
 						</div>
@@ -472,54 +464,41 @@
 			<div class="copyright_inner">
 				<ul>
 					<li class="wow fadeInDown" data-wow-duration="0.8s">
-						<span>WAXON</span>
-						<span>PORTFOLIO TEMPLATE</span>
+						{% for name in hero_section  %}
+						<span>{{name.first_name}} {{name.last_name}}</span>
+						<span>{{name.profession_1}} &amp; {{name.profession_2}}</span>
+						{% endfor %}
 					</li>
 					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.2s">
-						<span>Brook 103,</span>
-						<span>90021 New York, USA</span>
+						{% for location in contact_info %}
+						<span>{{location.location_description_1}}</span>
+						<span>{{location.location_description_2}}</span>
+						{% endfor %}
 					</li>
 					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.4s">
-						<span><a href="#">hi@waxon.com</a></span>
-						<span>+77 033 442 55 57</span>
+						{% for location in contact_info %}
+						<span><a href="mailto:{{location.email_address}}">{{location.email_address}}</a></span>
+						{% endfor %}
 					</li>
 					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.6s">
 						<div class="social">
 							<ul>
 								<li>
 									<a href="#">
-										<span class="first"><img class="svg" src="img/svg/social/facebook.svg" alt="" /></span>
-										<span class="second"><img class="svg" src="img/svg/social/facebook.svg" alt="" /></span>
+										<span class="first"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
+										<span class="second"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<span class="first"><img class="svg" src="img/svg/social/twitter.svg" alt="" /></span>
-										<span class="second"><img class="svg" src="img/svg/social/twitter.svg" alt="" /></span>
+										<span class="first"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
+										<span class="second"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<span class="first"><img class="svg" src="img/svg/social/instagram.svg" alt="" /></span>
-										<span class="second"><img class="svg" src="img/svg/social/instagram.svg" alt="" /></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span class="first"><img class="svg" src="img/svg/social/soundcloud.svg" alt="" /></span>
-										<span class="second"><img class="svg" src="img/svg/social/soundcloud.svg" alt="" /></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span class="first"><img class="svg" src="img/svg/social/youtube.svg" alt="" /></span>
-										<span class="second"><img class="svg" src="img/svg/social/youtube.svg" alt="" /></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span class="first"><img class="svg" src="img/svg/social/vk.svg" alt="" /></span>
-										<span class="second"><img class="svg" src="img/svg/social/vk.svg" alt="" /></span>
+										<span class="first"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
+										<span class="second"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
 									</a>
 								</li>
 							</ul>

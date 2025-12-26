@@ -78,3 +78,87 @@ class BlogParagraph(models.Model):
 
     def __str__(self):
         return self.content[:50]  # show first 50 chars
+
+
+
+
+class SkillsSection(models.Model):
+    skill_name = models.CharField(max_length=60, help_text="Skill Name", blank=True)
+    skill_percent = models.PositiveIntegerField(help_text="Skill Percent (0–100)")
+
+    class Meta:
+        verbose_name = "Skill"
+        verbose_name_plural = "Skills"
+
+
+class LanguageSection(models.Model):
+    language_name = models.CharField(max_length=60, help_text="Language Name", blank=True)
+    language_percent = models.PositiveIntegerField(help_text="Language Percent (0–100)")
+
+    class Meta:
+        verbose_name = "Language"
+        verbose_name_plural = "Languages"
+
+
+class ContactInfo(models.Model):
+    email_address = models.EmailField(
+        max_length=254, # Recommended max length for emails
+        unique=True,    # Ensures no duplicate emails in the database
+        blank=False,    # Makes the field required in forms and admin
+        null=False,     # Makes the database column non-nullable
+        help_text="Required. A valid email address."
+    )
+    location_description_1= models.CharField(max_length=350, blank=False, help_text="Add Street, Society")
+    location_description_2= models.CharField(max_length=350, blank=False, help_text="Add City, Country" )
+    map_location = models.TextField(help_text="Add Google Maps Geolocation")
+    contact_availability = models.TextField(help_text="Your Contact Availability Information", null=True)
+
+    class Meta:
+        verbose_name = "Contact Info"
+        verbose_name_plural = "Contact Info"
+
+
+class Timeline(models.Model):
+    start_year = models.PositiveIntegerField(help_text="Starting Year")
+    end_year = models.PositiveIntegerField(help_text="Ending Year")
+    institute_university_name = models.CharField(max_length=300, help_text="Institute University Name")
+    degree_role = models.CharField(max_length=300, help_text="What You Did")
+
+
+    class Meta:
+        verbose_name = "Timeline"
+        verbose_name_plural = "Timeline"
+
+
+
+class TimelineExperience(models.Model):
+    timeline = models.ForeignKey(
+        Timeline, 
+        on_delete=models.CASCADE, 
+        related_name='experiences',
+        help_text="Select the timeline this experience belongs to"
+    )
+    title = models.CharField(max_length=350, help_text="Title of the experience or achievement")
+    description = models.TextField(help_text="Describe what you did", blank=True)
+    start_year = models.PositiveIntegerField(help_text="Starting Year", null=True)
+    end_year = models.PositiveIntegerField(help_text="Ending Year", null=True)
+
+    class Meta:
+        verbose_name = "Timeline Experience"
+        verbose_name_plural = "Timeline Experiences"
+
+    def __str__(self):
+        return self.title
+
+
+
+class PresentationSection(models.Model):
+    title = models.CharField(max_length=350, help_text="Enter Presentation Title")
+    presentation_image = models.ImageField(help_text="Upload Presentation Image", upload_to='images/')
+    presentation_link = models.TextField(help_text="Enter Presentation Link")
+
+    class Meta:
+        verbose_name = "Presentation Section"
+        verbose_name_plural = "Presentation Section"
+
+

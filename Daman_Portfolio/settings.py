@@ -157,10 +157,10 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 JAZZMIN_SETTINGS = {
     'site_title' : "",
-    'site_header' : "m2stor",
-    'site_brand'  : "m2stor",
-    'welcome_sign'  : "Welcome to m2stor",
-    'copyright'  : "m2stor 2025",
+    'site_header' : "DAMAN KHALID",
+    'site_brand'  : "DAMAN KHALID",
+    'welcome_sign'  : "DAMAN KHALID",
+    'copyright'  : "DAMAN KHALID",
     'show_ui_builder': "true",
 }
 
