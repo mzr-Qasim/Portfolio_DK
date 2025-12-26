@@ -774,3 +774,22 @@ jQuery(document).ready(function(){
 	});
 	
 });
+
+
+
+
+window.addEventListener('load', function() {
+    if (window.location.hash === "#contact_us") {
+        const contactSection = document.getElementById('contact_us');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+});
+
+
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+        document.querySelectorAll('form').forEach(form => form.reset());
+    }
+});
