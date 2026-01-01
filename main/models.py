@@ -179,7 +179,7 @@ class ProjectSkillsCounter(models.Model):
 
 
 
-   
+    
 
 class PortfolioCategory(models.Model):
     name = models.CharField(max_length=50)
