@@ -2,14 +2,14 @@
 
 # Register your models here.
 from django.contrib import admin
-from .models import siteLogo, heroSection, aboutSection, servicesSection, blogsSection, BlogParagraph, SkillsSection, LanguageSection, ContactInfo, Timeline, TimelineExperience, PresentationSection
+from .models import siteLogo, heroSection, aboutSection, servicesSection, blogsSection, BlogParagraph, SkillsSection, LanguageSection, ContactInfo, Timeline, TimelineExperience, PresentationSection, ProjectSkillsCounter, PortfolioItem, PortfolioCategory
 
 # -----------------------------
 # Pricing Section Admin
 # -----------------------------
 @admin.register(siteLogo)
 class SiteLogoAdmin(admin.ModelAdmin): 
-    list_display = ('site_logo',)
+    list_display = ('site_logo','footer_logo','fav_icon_ico','fav_icon_32_png','fav_icon_16_png')
 
 
 @admin.register(heroSection)
@@ -59,7 +59,7 @@ class LanguageSectionAdmin(admin.ModelAdmin):
 
 @admin.register(ContactInfo)
 class LocationSectionAdmin(admin.ModelAdmin): 
-    list_display = ('email_address','location_description_1','location_description_2','map_location','contact_availability')
+    list_display = ('email_address','location_description_1','location_description_2','map_location','contact_availability','linkedin_link','instagram_link','youtube_link')
 
 
 
@@ -79,6 +79,12 @@ class PresentationSectionAdmin(admin.ModelAdmin):
     list_display = ('title','presentation_image','presentation_link')
 
 
+@admin.register(ProjectSkillsCounter)
+class ProjectSkillsCounterAdmin(admin.ModelAdmin): 
+    list_display = ('title','value')
 
 
 
+
+admin.site.register(PortfolioCategory)
+admin.site.register(PortfolioItem)

@@ -18,6 +18,17 @@
 <title>{{main_hero.first_name}} | About</title>
 {% endfor %}
 
+
+ {% for favicon in site_logo %}
+<link rel="icon" type="image/png" sizes="32x32" href="{{favicon.fav_icon_32_png.url}}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{favicon.fav_icon_16_png.url}}">
+{% endfor %}
+
+<!-- Fallback for older browsers -->
+{% for favicon in site_logo %}
+<link rel="shortcut icon" href="{{favicon.fav_icon_ico.url}}">
+{% endfor %}
+
 <!-- STYLES -->
 <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
@@ -280,114 +291,20 @@
 			<div class="container">
 				<div class="counter_list">
 					<ul>
+						{% for counter in project_skills_counter_section %}
 						<li>
 							<div class="list_inner">
-								<h3><span class="tm_counter" data-from="0" data-to="15" data-speed="2000">0</span></h3>
-								<span class="title">Experience</span>
+								<h3><span class="tm_counter" data-from="0" data-to="{{counter.value}}" data-speed="2000">0</span></h3>
+								<span class="title">{{counter.title}}</span>
 							</div>
 						</li>
-						<li>
-							<div class="list_inner">
-								<h3><span class="tm_counter" data-from="0" data-to="87" data-speed="2000">0</span></h3>
-								<span class="title">Project</span>
-							</div>
-						</li>
-						<li>
-							<div class="list_inner">
-								<h3><span class="tm_counter" data-from="0" data-to="49" data-speed="2000">0</span></h3>
-								<span class="title">Award</span>
-							</div>
-						</li>
-						<li>
-							<div class="list_inner">
-								<h3><span class="tm_counter" data-from="0" data-to="25" data-speed="2000">0</span></h3>
-								<span class="title">Member</span>
-							</div>
-						</li>
+						{% endfor %}
 					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="waxon_tm_member">
-			<div class="container">
-				<div class="member_inner">
-					<div class="waxon_tm_main_title">
-						<div class="title">
-							<h3>Members<span class="bg">Members</span></h3>
-						</div>
-					</div>
-					<div class="list">
-						<ul>
-							<li>
-								<div class="list_inner">
-									<div class="image">
-										<img src="img/thumbs/1-1.jpg" alt="" />
-										<div class="main" data-img-url="img/team/1.jpg"></div>
-									</div>
-									<div class="details">
-										<h3>Selena Brook</h3>
-										<span>Sales Manager</span>
-										<div class="social">
-											<ul>
-												<li><a href="#"><i class="icon-facebook-1"></i></a></li>
-												<li><a href="#"><i class="icon-twitter-1"></i></a></li>
-												<li><a href="#"><i class="icon-behance-2"></i></a></li>
-												<li><a href="#"><i class="icon-linkedin-1"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="list_inner">
-									<div class="image">
-										<img src="img/thumbs/1-1.jpg" alt="" />
-										<div class="main" data-img-url="img/team/2.jpg"></div>
-									</div>
-									<div class="details">
-										<h3>Parker Kennedy</h3>
-										<span>Senior Designer</span>
-										<div class="social">
-											<ul>
-												<li><a href="#"><i class="icon-facebook-1"></i></a></li>
-												<li><a href="#"><i class="icon-twitter-1"></i></a></li>
-												<li><a href="#"><i class="icon-behance-2"></i></a></li>
-												<li><a href="#"><i class="icon-linkedin-1"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="list_inner">
-									<div class="image">
-										<img src="img/thumbs/1-1.jpg" alt="" />
-										<div class="main" data-img-url="img/team/3.jpg"></div>
-									</div>
-									<div class="details">
-										<h3>David Walker</h3>
-										<span>UI/UX Designer</span>
-										<div class="social">
-											<ul>
-												<li><a href="#"><i class="icon-facebook-1"></i></a></li>
-												<li><a href="#"><i class="icon-twitter-1"></i></a></li>
-												<li><a href="#"><i class="icon-behance-2"></i></a></li>
-												<li><a href="#"><i class="icon-linkedin-1"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- /ABOUT PAGE -->
-	
-	
-	
 	<!-- CONTACT -->
 	<div class="waxon_tm_contact" id="contact">
 		<div class="bg_image"></div>
@@ -432,23 +349,14 @@
 									<textarea id="message" name="message" placeholder="Message" required></textarea>
 								</div>
 								<div class="waxon_tm_button" data-position="center">
-									<!-- <a id="send_message" href="#">
-										<span>Send Message</span>
-									</a> -->
 									<button id="send_message" type="submit">Send Message</button>
 								</div>
-								
-								<!-- If you want to change mail address to yours, please open modal.php and go to line 4 -->
-								
 							</form>
 						</div>
 					</div>
 					<div class="right wow fadeInRight" data-wow-duration="0.8s">
 						<div class="waxon_tm_map">
 							<div class="mapouter"><div class="gmap_canvas">{% for location in contact_info %}<iframe width="100%" height="359" id="gmap_canvas" src="{{location.map_location}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>{% endfor %}<a href="https://123movies-to.org">123movies</a><br><style>.mapouter{position:relative;text-align:right;height:359px;width:600px;}</style><a href="https://www.embedgooglemap.net"></a><style>.gmap_canvas {overflow:hidden;background:none!important;height:359px;width:100%;}</style></div></div>
-
-
-
 							<!-- Get your API here https://www.embedgooglemap.net -->
 						</div>
 					</div>	
@@ -459,74 +367,4 @@
 	<!-- /CONTACT -->
 	
 	<!-- COPYRIGHT -->
-	<div class="waxon_tm_copyright">
-		<div class="container">
-			<div class="copyright_inner">
-				<ul>
-					<li class="wow fadeInDown" data-wow-duration="0.8s">
-						{% for name in hero_section  %}
-						<span>{{name.first_name}} {{name.last_name}}</span>
-						<span>{{name.profession_1}} &amp; {{name.profession_2}}</span>
-						{% endfor %}
-					</li>
-					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.2s">
-						{% for location in contact_info %}
-						<span>{{location.location_description_1}}</span>
-						<span>{{location.location_description_2}}</span>
-						{% endfor %}
-					</li>
-					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.4s">
-						{% for location in contact_info %}
-						<span><a href="mailto:{{location.email_address}}">{{location.email_address}}</a></span>
-						{% endfor %}
-					</li>
-					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.6s">
-						<div class="social">
-							<ul>
-								<li>
-									<a href="#">
-										<span class="first"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
-										<span class="second"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span class="first"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
-										<span class="second"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span class="first"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
-										<span class="second"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- /COPYRIGHT -->
-	
-	<!-- MAGIC CURSOR -->
-	<div class="mouse-cursor cursor-outer"></div>
-    <div class="mouse-cursor cursor-inner"></div>
-	<!-- /MAGIC CURSOR -->
-	
-		
-</div>
-<!-- / WRAPPER ALL -->
-	
-<!-- SCRIPTS -->
-<script src="{% static 'js/jquery.js' %}"></script>
-<!--[if lt IE 10]> <script type="text/javascript" src="js/ie8.js"></script> <![endif]-->	
-<script src="{% static 'js/plugins.js' %}"></script>
-<script src="{% static 'js/init.js' %}"></script>
-<!-- /SCRIPTS -->
-
-</body>
-</html>
-
-
+{% include "footer.html" %}

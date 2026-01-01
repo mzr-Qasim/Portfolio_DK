@@ -1,0 +1,80 @@
+	{% load static %}
+    <div class="waxon_tm_copyright">
+		<div class="container">
+			<div class="copyright_inner">
+				<ul>
+					<li class="wow fadeInDown footer_logo" data-wow-duration="0.8s">
+                        						{% for logo in site_logo  %}
+                        <img src="{{logo.footer_logo.url}}" alt="">
+						{% endfor %}
+						{% for name in hero_section  %}
+						<span>{{name.first_name}} {{name.last_name}}</span>
+						<span>{{name.profession_1}} &amp; {{name.profession_2}}</span>
+						{% endfor %}
+					</li>
+					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.2s">
+						{% for location in contact_info %}
+						<span>{{location.location_description_1}}</span>
+						<span>{{location.location_description_2}}</span>
+						{% endfor %}
+					</li>
+					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.4s">
+						{% for location in contact_info %}
+						<span><a href="mailto:{{location.email_address}}">{{location.email_address}}</a></span>
+						{% endfor %}
+					</li>
+					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.6s">
+						<div class="social">
+							<ul>
+								<li>
+									{% for link in contact_info  %}
+									<a href="{{link.linkedin_link}}">
+										<span class="first"><img class="svg" src="{% static 'img/svg/social/linkedin.svg' %}" alt="" /></span>
+										<span class="second"><img class="svg" src="{% static 'img/svg/social/linkedin.svg' %}" alt="" /></span>
+									</a>
+									{% endfor %}
+								</li>
+								<li>
+									{% for link in contact_info  %}
+									<a href="{{link.instagram_link}}">
+										<span class="first"><img class="svg" src="{% static 'img/svg/social/instagram-2.svg' %}" alt="" /></span>
+										<span class="second"><img class="svg" src="{% static 'img/svg/social/instagram-2.svg' %}" alt="" /></span>
+									</a>
+									{% endfor %}
+								</li>
+								<li>
+									{% for link in contact_info  %}
+									<a href="{{link.youtube_link}}">
+										<span class="first"><img class="svg" src="{% static 'img/svg/social/youtube.svg' %}" alt="" /></span>
+										<span class="second"><img class="svg" src="{% static 'img/svg/social/youtube.svg' %}" alt="" /></span>
+									</a>
+									{% endfor %}
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- /COPYRIGHT -->
+	
+	<!-- MAGIC CURSOR -->
+	<div class="mouse-cursor cursor-outer"></div>
+    <div class="mouse-cursor cursor-inner"></div>
+	<!-- /MAGIC CURSOR -->
+	
+		
+</div>
+<!-- / WRAPPER ALL -->
+	
+<!-- SCRIPTS -->
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<!--[if lt IE 10]> <script type="text/javascript" src="js/ie8.js"></script> <![endif]-->	
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/init.js' %}"></script>
+<!-- /SCRIPTS -->
+
+</body>
+</html>

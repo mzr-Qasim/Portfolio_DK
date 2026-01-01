@@ -19,6 +19,15 @@
 {% endfor %}
 
 <!-- STYLES -->
+ {% for favicon in site_logo %}
+<link rel="icon" type="image/png" sizes="32x32" href="{{favicon.fav_icon_32_png.url}}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{favicon.fav_icon_16_png.url}}">
+{% endfor %}
+
+<!-- Fallback for older browsers -->
+{% for favicon in site_logo %}
+<link rel="shortcut icon" href="{{favicon.fav_icon_ico.url}}">
+{% endfor %}
 <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -238,30 +247,14 @@
 								<span class="second">All</span>
 							</a>
 						</li>
-						<li>
-							<a href="#" data-filter=".vimeo">
-								<span class="first">Vimeo</span>
-								<span class="second">Vimeo</span>
-							</a>
-						</li>
-						<li>
-							<a href="#" data-filter=".youtube">
-								<span class="first">Youtube</span>
-								<span class="second">Youtube</span>
-							</a>
-						</li>
-						<li>
-							<a href="#" data-filter=".soundcloud">
-								<span class="first">Soundcloud</span>
-								<span class="second">Soundcloud</span>
-							</a>
-						</li>
-						<li>
-							<a href="#" data-filter=".modalbox">
-								<span class="first">Modalbox</span>
-								<span class="second">Modalbox</span>
-							</a>
-						</li>
+						{% for cat in categories %}
+						 <li>
+        					<a href="#" data-filter=".{{ cat.slug }}">
+            					<span class="first">{{ cat.name }}</span>
+            					<span class="second">{{ cat.name }}</span>
+        					</a>
+    					</li>
+    					{% endfor %}
 					</ul>
 					<div class="wrapper">
 						<a href="#"><span class="trigger"></span></a>
@@ -270,285 +263,47 @@
 			</div>
 			<div class="portfolio_inner">
 				<ul class="gallery_zoom">
-					<li class="vimeo">
-						<div class="list_inner">
-							<div class="image">
-								<img src="img/thumbs/1-1.jpg" alt="" />
-								<div class="main" data-img-url="img/portfolio/1.jpg"></div>
-								<a class="full_link popup-vimeo" href="https://vimeo.com/312334044"></a>
-							</div>
-							<div class="title">
-								<h3><a href="#">Sweet Cherry</a></h3>
-								<span><a href="#">Vimeo</a></span>
-							</div>
-						</div>
-					</li>
-					<li class="youtube">
-						<div class="list_inner">
-							<div class="image">
-								<img src="img/thumbs/1-1.jpg" alt="" />
-								<div class="main" data-img-url="img/portfolio/2.jpg"></div>
-								<a class="full_link popup-youtube" href="https://www.youtube.com/watch?v=Amq-qlqbjYA"></a>
-							</div>
-							<div class="title">
-								<h3><a href="#">Delicious Fruit</a></h3>
-								<span><a href="#">Youtube</a></span>
-							</div>
-						</div>
-					</li>
-					<li class="soundcloud">
-						<div class="list_inner">
-							<div class="image">
-								<img src="img/thumbs/1-1.jpg" alt="" />
-								<div class="main" data-img-url="img/portfolio/3.jpg"></div>
-								<a class="full_link soundcloude_link mfp-iframe audio" href="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252739311&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=truehttps://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252739311&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></a>
-							</div>
-							<div class="title">
-								<h3><a href="#">Blue Lemon</a></h3>
-								<span><a href="#">Soundcloud</a></span>
-							</div>
-						</div>
-					</li>
-					<li class="modalbox">
-						<div class="list_inner">
-							<div class="image">
-								<img src="img/thumbs/1-1.jpg" alt="" />
-								<div class="main" data-img-url="img/portfolio/4.jpg"></div>
-								<a class="full_link portfolio_popup" href="#"></a>
-							</div>
-							<div class="title">
-								<h3><a class="portfolio_popup" href="#">Yellow Phone</a></h3>
-								<span><a href="#">Modalbox</a></span>
-							</div>
-						</div>
+				{% for item in portfolio_items %}
+				    <li class="{{ item.category.slug|default:'all' }}">
+				        <div class="list_inner">
 						
-						<!-- Modalbox Info Start -->
-						<div class="hidden_content_portfolio">
-							<div class="popup_details">
-								<div class="main_details">
-									<div class="textbox">
-										<p>Web designing is the process of planning, conceptualizing, and implementing the plan for designing a website in a way that is functional and offers a good user experience. User experience is central to the web designing process. Websites have an array of elements presented in ways that make them easy to navigate.</p>
-										<p>Web designing essentially involves working on every attribute of the website that people interact with, so that the website is simple and efficient, allows users to quickly find the information they need, and looks visually pleasing. All these factors, when combined, decide how well the website is designed.</p>
-									</div>
-									<div class="detailbox">
-										<ul>
-											<li>
-												<span class="first">Client</span>
-												<span>David Parker</span>
-											</li>
-											<li>
-												<span class="first">Category</span>
-												<span><a href="#">Branding</a></span>
-											</li>
-											<li>
-												<span class="first">Date</span>
-												<span>Sep 22, 2023</span>
-											</li>
-											<li>
-												<span class="first">Share</span>
-												<ul class="share">
-													<li><a href="#"><img class="svg" src="img/svg/social/facebook.svg" alt="" /></a></li>
-													<li><a href="#"><img class="svg" src="img/svg/social/twitter.svg" alt="" /></a></li>
-													<li><a href="#"><img class="svg" src="img/svg/social/instagram.svg" alt="" /></a>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="additional_images">
-									<ul>
-										<li>
-											<div class="list_inner">
-												<div class="my_image">
-													<img src="img/thumbs/4-2.jpg" alt="" />
-													<div class="main" data-img-url="img/portfolio/1.jpg"></div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="list_inner">
-												<div class="my_image">
-													<img src="img/thumbs/4-2.jpg" alt="" />
-													<div class="main" data-img-url="img/portfolio/2.jpg"></div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="list_inner">
-												<div class="my_image">
-													<img src="img/thumbs/4-2.jpg" alt="" />
-													<div class="main" data-img-url="img/portfolio/3.jpg"></div>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<!-- /Modalbox Info Start -->
+				            <div class="image">
+				                <img src="{{ item.thumbnail.url }}" alt="">
+				                <div class="main" data-img-url="{{ item.image.url }}"></div>
+							
+				                {% if item.is_modal %}
+				                    <a class="full_link portfolio_popup" href="#"></a>
+				                {% elif item.video_url %}
+				                    <a class="full_link popup-{{ item.category.slug }}" href="{{ item.video_url }}"></a>
+				                {% endif %}
+				            </div>
 						
-					</li>
-					<li class="modalbox">
-						<div class="list_inner">
-							<div class="image">
-								<img src="img/thumbs/1-1.jpg" alt="" />
-								<div class="main" data-img-url="img/portfolio/5.jpg"></div>
-								<a class="full_link portfolio_popup" href="#"></a>
-							</div>
-							<div class="title">
-								<h3><a class="portfolio_popup" href="#">Ice Cream</a></h3>
-								<span><a href="#">Modalbox</a></span>
-							</div>
-						</div>
+				            <div class="title">
+				                <h3>
+				                    {% if item.is_modal %}
+				                        <a class="portfolio_popup" href="#">{{ item.title }}</a>
+				                    {% else %}
+				                        <a href="#">{{ item.title }}</a>
+				                    {% endif %}
+				                </h3>
+				                <span>{{ item.category.name }}</span>
+				            </div>
 						
-						<!-- Modalbox Info Start -->
-						<div class="hidden_content_portfolio">
-							<div class="popup_details">
-								<div class="main_details">
-									<div class="textbox">
-										<p>Web designing is the process of planning, conceptualizing, and implementing the plan for designing a website in a way that is functional and offers a good user experience. User experience is central to the web designing process. Websites have an array of elements presented in ways that make them easy to navigate.</p>
-										<p>Web designing essentially involves working on every attribute of the website that people interact with, so that the website is simple and efficient, allows users to quickly find the information they need, and looks visually pleasing. All these factors, when combined, decide how well the website is designed.</p>
-									</div>
-									<div class="detailbox">
-										<ul>
-											<li>
-												<span class="first">Client</span>
-												<span>David Parker</span>
-											</li>
-											<li>
-												<span class="first">Category</span>
-												<span><a href="#">Branding</a></span>
-											</li>
-											<li>
-												<span class="first">Date</span>
-												<span>Sep 22, 2023</span>
-											</li>
-											<li>
-												<span class="first">Share</span>
-												<ul class="share">
-													<li><a href="#"><img class="svg" src="img/svg/social/facebook.svg" alt="" /></a></li>
-													<li><a href="#"><img class="svg" src="img/svg/social/twitter.svg" alt="" /></a></li>
-													<li><a href="#"><img class="svg" src="img/svg/social/instagram.svg" alt="" /></a>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="additional_images">
-									<ul>
-										<li>
-											<div class="list_inner">
-												<div class="my_image">
-													<img src="img/thumbs/4-2.jpg" alt="" />
-													<div class="main" data-img-url="img/portfolio/1.jpg"></div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="list_inner">
-												<div class="my_image">
-													<img src="img/thumbs/4-2.jpg" alt="" />
-													<div class="main" data-img-url="img/portfolio/2.jpg"></div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="list_inner">
-												<div class="my_image">
-													<img src="img/thumbs/4-2.jpg" alt="" />
-													<div class="main" data-img-url="img/portfolio/3.jpg"></div>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<!-- /Modalbox Info Start -->
-						
-					</li>
-					<li class="modalbox">
-						<div class="list_inner">
-							<div class="image">
-								<img src="img/thumbs/1-1.jpg" alt="" />
-								<div class="main" data-img-url="img/portfolio/6.jpg"></div>
-								<a class="full_link portfolio_popup" href="#"></a>
-							</div>
-							<div class="title">
-								<h3><a class="portfolio_popup" href="#">Good Present</a></h3>
-								<span><a href="#">Modalbox</a></span>
-							</div>
-						</div>
-						
-						<!-- Modalbox Info Start -->
-						<div class="hidden_content_portfolio">
-							<div class="popup_details">
-								<div class="main_details">
-									<div class="textbox">
-										<p>Web designing is the process of planning, conceptualizing, and implementing the plan for designing a website in a way that is functional and offers a good user experience. User experience is central to the web designing process. Websites have an array of elements presented in ways that make them easy to navigate.</p>
-										<p>Web designing essentially involves working on every attribute of the website that people interact with, so that the website is simple and efficient, allows users to quickly find the information they need, and looks visually pleasing. All these factors, when combined, decide how well the website is designed.</p>
-									</div>
-									<div class="detailbox">
-										<ul>
-											<li>
-												<span class="first">Client</span>
-												<span>David Parker</span>
-											</li>
-											<li>
-												<span class="first">Category</span>
-												<span><a href="#">Branding</a></span>
-											</li>
-											<li>
-												<span class="first">Date</span>
-												<span>Sep 22, 2023</span>
-											</li>
-											<li>
-												<span class="first">Share</span>
-												<ul class="share">
-													<li><a href="#"><img class="svg" src="img/svg/social/facebook.svg" alt="" /></a></li>
-													<li><a href="#"><img class="svg" src="img/svg/social/twitter.svg" alt="" /></a></li>
-													<li><a href="#"><img class="svg" src="img/svg/social/instagram.svg" alt="" /></a>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="additional_images">
-									<ul>
-										<li>
-											<div class="list_inner">
-												<div class="my_image">
-													<img src="img/thumbs/4-2.jpg" alt="" />
-													<div class="main" data-img-url="img/portfolio/1.jpg"></div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="list_inner">
-												<div class="my_image">
-													<img src="img/thumbs/4-2.jpg" alt="" />
-													<div class="main" data-img-url="img/portfolio/2.jpg"></div>
-												</div>
-											</div>
-										</li>
-										<li>
-											<div class="list_inner">
-												<div class="my_image">
-													<img src="img/thumbs/4-2.jpg" alt="" />
-													<div class="main" data-img-url="img/portfolio/3.jpg"></div>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<!-- /Modalbox Info Start -->
-						
-					</li>
+				        </div>
+					
+				        {% if item.is_modal %}
+				        <div class="hidden_content_portfolio" style="display:none;">
+				            <div class="popup_details">
+				                <div class="main_details">
+				                    <div class="textbox">
+				                        {{ item.description|linebreaks }}
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+				        {% endif %}
+				    </li>
+				{% endfor %}
 				</ul>
 			</div>
 		</div>
@@ -648,24 +403,14 @@
 									<textarea id="message" name="message" placeholder="Message" required></textarea>
 								</div>
 								<div class="waxon_tm_button" data-position="center">
-									<!-- <a id="send_message" href="#">
-										<span>Send Message</span>
-									</a> -->
 									<button id="send_message" type="submit">Send Message</button>
 								</div>
-								
-								<!-- If you want to change mail address to yours, please open modal.php and go to line 4 -->
-								
 							</form>
 						</div>
 					</div>
 					<div class="right wow fadeInRight" data-wow-duration="0.8s">
 						<div class="waxon_tm_map">
 							<div class="mapouter"><div class="gmap_canvas">{% for location in contact_info %}<iframe width="100%" height="359" id="gmap_canvas" src="{{location.map_location}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>{% endfor %}<a href="https://123movies-to.org">123movies</a><br><style>.mapouter{position:relative;text-align:right;height:359px;width:600px;}</style><a href="https://www.embedgooglemap.net"></a><style>.gmap_canvas {overflow:hidden;background:none!important;height:359px;width:100%;}</style></div></div>
-
-
-
-							<!-- Get your API here https://www.embedgooglemap.net -->
 						</div>
 					</div>	
 				</div>
@@ -673,75 +418,4 @@
 		</div>
 	</div>
 	<!-- /CONTACT -->
-	
-	<!-- COPYRIGHT -->
-	<div class="waxon_tm_copyright">
-		<div class="container">
-			<div class="copyright_inner">
-				<ul>
-					<li class="wow fadeInDown" data-wow-duration="0.8s">
-						{% for name in hero_section  %}
-						<span>{{name.first_name}} {{name.last_name}}</span>
-						<span>{{name.profession_1}} &amp; {{name.profession_2}}</span>
-						{% endfor %}
-					</li>
-					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.2s">
-						{% for location in contact_info %}
-						<span>{{location.location_description_1}}</span>
-						<span>{{location.location_description_2}}</span>
-						{% endfor %}
-					</li>
-					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.4s">
-						{% for location in contact_info %}
-						<span><a href="mailto:{{location.email_address}}">{{location.email_address}}</a></span>
-						{% endfor %}
-					</li>
-					<li class="wow fadeInDown" data-wow-duration="0.8s" data-wow-delay="0.6s">
-						<div class="social">
-							<ul>
-								<li>
-									<a href="#">
-										<span class="first"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
-										<span class="second"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span class="first"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
-										<span class="second"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span class="first"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
-										<span class="second"><img class="svg" src="{% static 'img/svg/social/twitter.svg' %}" alt="" /></span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- /COPYRIGHT -->
-	
-	<!-- MAGIC CURSOR -->
-	<div class="mouse-cursor cursor-outer"></div>
-    <div class="mouse-cursor cursor-inner"></div>
-	<!-- /MAGIC CURSOR -->
-	
-		
-</div>
-<!-- / WRAPPER ALL -->
-	
-<!-- SCRIPTS -->
-
-<script src="{% static 'js/jquery.js' %}"></script>
-<!--[if lt IE 10]> <script type="text/javascript" src="js/ie8.js"></script> <![endif]-->	
-<script src="{% static 'js/plugins.js' %}"></script>
-<script src="{% static 'js/init.js' %}"></script>
-<!-- /SCRIPTS -->
-
-</body>
-</html>
+{% include "footer.html" %}

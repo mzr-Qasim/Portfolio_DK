@@ -7,6 +7,10 @@ from django.core.validators import FileExtensionValidator
 
 class siteLogo(models.Model):
     site_logo = models.ImageField(help_text="Site Logo" ,upload_to='images/')
+    footer_logo = models.ImageField(help_text="Footer Logo" ,upload_to='images/', null=True)
+    fav_icon_ico = models.ImageField(help_text="fav icon ico" ,upload_to='images/', null=True)
+    fav_icon_32_png = models.ImageField(help_text="fav icon 32x32 png" ,upload_to='images/', null=True)
+    fav_icon_16_png = models.ImageField(help_text="fav icon 16x16 png" ,upload_to='images/', null=True)
     class Meta:
         verbose_name = "Site Logo"
         verbose_name_plural = "Site Logo"
@@ -112,6 +116,9 @@ class ContactInfo(models.Model):
     location_description_2= models.CharField(max_length=350, blank=False, help_text="Add City, Country" )
     map_location = models.TextField(help_text="Add Google Maps Geolocation")
     contact_availability = models.TextField(help_text="Your Contact Availability Information", null=True)
+    linkedin_link = models.TextField(help_text="Add Linkedin Link", null=True)
+    instagram_link = models.TextField(help_text="Add Instagram", null=True)
+    youtube_link = models.TextField(help_text="Add Youtube Link", null=True)
 
     class Meta:
         verbose_name = "Contact Info"
@@ -162,3 +169,40 @@ class PresentationSection(models.Model):
         verbose_name_plural = "Presentation Section"
 
 
+class ProjectSkillsCounter(models.Model):
+    title = models.CharField(max_length=350, help_text="Enter Presentation Title")
+    value = models.PositiveIntegerField(help_text="Enter Project/Experience Value")
+
+    class Meta:
+        verbose_name = "Project Skills Counter Section"
+        verbose_name_plural = "Project Skills Counter Section"
+
+
+
+
+
+class PortfolioCategory(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(unique=True)  # vimeo, youtube, modalbox
+
+    def __str__(self):
+        return self.name
+
+
+class PortfolioItem(models.Model):
+    title = models.CharField(max_length=200)
+    category = models.ForeignKey(PortfolioCategory, on_delete=models.CASCADE)
+    
+    thumbnail = models.ImageField(upload_to='portfolio/thumbs/')
+    image = models.ImageField(upload_to='portfolio/images/', blank=True)
+
+    video_url = models.URLField(blank=True)  # vimeo / youtube / soundcloud
+
+    client = models.CharField(max_length=100, blank=True)
+    description = models.TextField(blank=True)
+    date = models.DateField(null=True, blank=True)
+
+    is_modal = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title

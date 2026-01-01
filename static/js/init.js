@@ -62,26 +62,42 @@ jQuery(document).ready(function(){
 	// -------------------------------------------------
 
 	function waxon_tm_modalbox_portfolio(){
+    var modalBox = jQuery('.waxon_tm_modalbox');
+    var button   = jQuery('.waxon_tm_portoflio .portfolio_popup');
 
-		var modalBox	= jQuery('.waxon_tm_modalbox');
-		var button		= jQuery('.waxon_tm_portoflio .portfolio_popup');
+    button.on('click', function(){
+        var element = jQuery(this);
+        var parent  = element.closest('li');
 
-		button.on('click',function(){
-			var element 	= jQuery(this);
-			var parent		= element.closest('li');
-			var image		= parent.find('.image .main').data('img-url');
-			var details 	= parent.find('.hidden_content_portfolio').html();
-			var title	 	= parent.find('.title h3 a').text();
+        // Grab full image from data-img-url
+        var image   = parent.find('.image .main').data('img-url');
 
-			modalBox.addClass('opened');
-			modalBox.find('.description_wrap').html(details);
-			modalBox.find('.popup_details').prepend('<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
-			modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><h3 class="title">'+title+'</h3></div>');	
-			waxon_tm_data_images();
-			return false;
-		});
-	}
-	waxon_tm_modalbox_portfolio();
+        var details = parent.find('.hidden_content_portfolio').html();
+        var title   = parent.find('.title h3 a').text();
+
+        modalBox.addClass('opened');
+        modalBox.find('.description_wrap').html(details);
+
+        // PREPEND full image
+        modalBox.find('.popup_details').prepend(
+            '<div class="top_image">' +
+                '<img src="' + image + '" alt="Full Image" />' +
+                '<div class="main" data-img-url="' + image + '"></div>' +
+            '</div>'
+        );
+
+        // Add title under image
+        modalBox.find('.popup_details .top_image').after(
+            '<div class="portfolio_main_title"><h3 class="title">' + title + '</h3></div>'
+        );
+
+        waxon_tm_data_images();
+        return false;
+    });
+}
+
+waxon_tm_modalbox_portfolio();
+
 	
 	// -------------------------------------------------
 	// -------------  MODALBOX NEWS  -------------------
@@ -610,6 +626,8 @@ jQuery(document).ready(function(){
 					jQuery(this).addClass('current');
 					return false;
 				});	
+
+				
 			}
 		}
 	}

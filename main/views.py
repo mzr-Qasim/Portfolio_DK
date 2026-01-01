@@ -1,6 +1,6 @@
 # Create your views here.
 from django.shortcuts import render
-from main.models import siteLogo, heroSection, aboutSection, servicesSection, blogsSection, SkillsSection, LanguageSection, ContactInfo, Timeline, TimelineExperience, PresentationSection
+from main.models import siteLogo, heroSection, aboutSection, servicesSection, blogsSection, SkillsSection, LanguageSection, ContactInfo, Timeline, TimelineExperience, PresentationSection, ProjectSkillsCounter, PortfolioCategory, PortfolioItem
 
 # Create your views here.
 def home(request):
@@ -8,6 +8,8 @@ def home(request):
     hero_section = heroSection.objects.all()
     about_section = aboutSection.objects.all()
     service_section = servicesSection.objects.all()
+    portfolio_items = PortfolioItem.objects.select_related('category')
+    categories = PortfolioCategory.objects.all()
     blog_section = blogsSection.objects.all()
     contact_info = ContactInfo.objects.all()
     
@@ -17,6 +19,8 @@ def home(request):
         'hero_section':hero_section,
         'about_section':about_section,
         'service_section': service_section,
+        'portfolio_items': portfolio_items,
+        'categories': categories,
         'blog_section': blog_section,
         'contact_info': contact_info,
     }
@@ -35,6 +39,7 @@ def about(request):
     timeline_section = Timeline.objects.all()
     timeline_experience_section = TimelineExperience.objects.all()
     presentation_section = PresentationSection.objects.all()
+    project_skills_counter_section = ProjectSkillsCounter.objects.all()
     contact_info = ContactInfo.objects.all()
     
 
@@ -47,6 +52,7 @@ def about(request):
         'timeline_section':timeline_section,
         'timeline_experience_section':timeline_experience_section,
         'presentation_section':presentation_section,
+        'project_skills_counter_section':project_skills_counter_section,
         'contact_info': contact_info,
     }
     return render(request, 'about.html', context)  

@@ -1194,7 +1194,7 @@ h1, h2, h3, h4, h5, h6{
 	height: auto;
 	clear: both;
 	float: left;
-	padding: 205px 0px 100px 0px;
+	padding: 100px 0px 100px 0px;
 	background-color: #f8f9fa;
 }
 .waxon_tm_news .news_inner{
@@ -2431,104 +2431,10 @@ h1, h2, h3, h4, h5, h6{
 	display: block;
 	font-style: italic;
 }
-.waxon_tm_member{
-	width: 100%;
-	float: left;
-	background-color: #F8F9FA;
-	padding: 200px 0px 100px 0px;
-}
-.waxon_tm_member .member_inner{
-	width: 100%;
-	float: left;
-}
-.waxon_tm_member .list{
-	width: 100%;
-	float: left;
-	margin-top: 100px;
-}
-.waxon_tm_member .list > ul{
-	margin: 0px 0px 0px -50px;
-	list-style-type: none;
-}
-.waxon_tm_member .list > ul > li{
-	margin: 0px 0px 50px 0px;
-	width: 33.3333%;
-	float: left;
-	padding-left: 50px;
-}
-.waxon_tm_member .list .list_inner{
-	width: 100%;
-	float: left;
-	position: relative;
-	overflow: hidden;
-}
-.waxon_tm_member .list .image{
-	position: relative;
-	margin-bottom: 20px;
-}
-.waxon_tm_member .list .image img{
-	position: relative;
-	opacity: 0;
-	min-width: 100%;
-}
-.waxon_tm_member .list .image .main{
-	position: absolute;
-	top: 0px;
-	bottom: 0px;
-	left: 0px;
-	right: 0px;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-}
-.waxon_tm_member .list .details{
-	width: 100%;
-	float: left;
-	position: relative;
-}
-.waxon_tm_member .list .details h3{
-    font-size: 18px;
-    font-weight: 600;
-}
-.waxon_tm_member .list .details span{
-    font-style: italic;
-}
-.waxon_tm_member .social{
-    position: absolute;
-	right: -30px;
-	bottom: 0px;
-	
-	-webkit-transition: all .3s ease;
-	   -moz-transition: all .3s ease;
-	    -ms-transition: all .3s ease;
-	     -o-transition: all .3s ease;
-	        transition: all .3s ease;
-}
-.waxon_tm_member .list .list_inner:hover .social{
-	right: 15px;
-}
-.waxon_tm_member .social ul{
-   	margin: 0px;
-	list-style-type: none;
-}
-.waxon_tm_member .social ul li{
-   	margin: 0px;
-}
-.waxon_tm_member .social ul li a{
-   	display: inline-block;
-	position: relative;
-	width: 24px;
-	height: 24px;
-	background-color: var(--main-color);
-	border-radius: 3px;
-	color: #fff;
-}
-.waxon_tm_member .social ul li i{
-   	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	font-size: 13px;
+
+.footer_logo img{
+		height: 3rem;
+		margin-bottom: 1rem;
 }
 
 /*---------------------------------------------------*/
