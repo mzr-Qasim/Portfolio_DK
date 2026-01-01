@@ -16,7 +16,7 @@ jobs:
       - name: 📂 Sync files via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          server: damankhalid.info
+          server: ftp.damankhalid.info
           username: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
           protocol: ftps
