@@ -1058,132 +1058,7 @@ h1, h2, h3, h4, h5, h6{
 	display: inline-block;
 }
 
-/*---------------------------------------------------*/
-/*	08) WAXON TESTIMONIALS
-/*---------------------------------------------------*/
 
-.waxon_tm_testimonials{
-	width: 100%;
-	height: auto;
-	clear: both;
-	float: left;
-	margin-bottom: 100px;
-}
-.waxon_tm_testimonials .testimonials_inner{
-	width: 100%;
-	height: auto;
-	clear: both;
-	float: left;
-	overflow: hidden;
-	padding-top: 105px;
-	padding-left: 2px;
-	padding-right: 2px;
-}
-.waxon_tm_testimonials .owl-carousel .owl-stage{display: flex;}
-
-.waxon_tm_testimonials .item{
-	width: 100%;
-	height: auto;
-	clear: both;
-	float: left;
-	height: 100%;
-	position: relative;
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flex;
-	display: -o-flex;
-	display: flex;
-	-webkit-flex-direction: column;
-	-moz-flex-direction: column;
-	-ms-flex-direction: column;
-	-o-flex-direction: column;
-	flex-direction: column;
-}
-.waxon_tm_testimonials .text{
-	width: 100%;
-	height: auto;
-	clear: both;
-	float: left;
-	position: relative;
-	border: 2px solid rgba(0,0,0,.07);
-	padding: 40px;
-	margin-bottom: 30px;
-}
-.waxon_tm_testimonials .text:before{
-	position: absolute;
-	content: "";
-	height: 0px;
-    width: 0px;
-	top: 100%;
-    left: 50px;
-    border: solid transparent;
-    border-top-color: rgba(0,0,0,.07);
-    border-width: 18px 18px 0px 0px;
-}
-.waxon_tm_testimonials .text:after{
-	position: absolute;
-	content: "";
-	top: 100%;
-    left: 50px;
-	height: 0px;
-    width: 0px;
-    border: solid transparent;
-    border-top-color: #fff;
-    border-width: 14px 13px 0px 0px;
-    margin-left: 2px;
-}
-.waxon_tm_testimonials .details{
-	width: 100%;
-	height: auto;
-	clear: both;
-	float: left;
-	display: flex;
-	align-items: center;
-	padding-left: 20px;
-	margin-top: auto;
-}
-.waxon_tm_testimonials .details .image{
-	position: relative;
-	width: 60px;
-	height: 60px;
-}
-.waxon_tm_testimonials .details .image .main{
-	position: absolute;
-	top: 0px;
-	bottom: 0px;
-	left: 0px;
-	right: 0px;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	border-radius: 100%;
-}
-.waxon_tm_testimonials .details .short{
-	padding-left: 20px;
-}
-.waxon_tm_testimonials .details .author{
-	font-size: 16px;
-    margin-bottom: 2px;
-    font-weight: 600;
-}
-.waxon_tm_testimonials .details .job{
-	margin: 0px;
-	padding: 0px;
-	font-style: italic;
-}
-.waxon_tm_testimonials .owl-carousel .owl-stage-outer{
-	overflow: hidden;
-}
-.waxon_tm_testimonials .owl-carousel .owl-stage-outer{
-	overflow: visible;
-}
-.waxon_tm_testimonials .owl-item.active{
-	opacity: 1;
-}
-.waxon_tm_testimonials .owl-item{
-	opacity: 0;
-}
-.waxon_tm_testimonials .quote_list ul li .svg{color: var(--main-color);}
 
 /*---------------------------------------------------*/
 /*	09) WAXON NEWS
@@ -2499,10 +2374,8 @@ h1, h2, h3, h4, h5, h6{
 	.waxon_tm_timeline .study{width: 100%;padding-right: 0px;}
 	.waxon_tm_timeline .job{width: 100%;padding-left: 0px;}
 	.waxon_tm_counter .counter_list ul li{width: 33.3333%;}
-	.waxon_tm_member .list > ul > li{width: 50%;}
 	.waxon_tm_about_page{margin-top: 216px;}
 	.waxon_tm_skills{padding-top: 140px;}
-	.waxon_tm_member{padding-top: 140px;}
 	.waxon_tm_timeline{padding-top: 135px;}
 	.waxon_tm_about_page .waxon_tm_about{padding-top: 130px;}
 	.waxon_tm_modalbox .box_inner{width: 600px;top: 50px;bottom: 50px;}
@@ -2530,8 +2403,6 @@ h1, h2, h3, h4, h5, h6{
 	.waxon_tm_counter .counter_list .list_inner .title{font-size: 15px;}
 	.waxon_tm_counter .counter_list ul li{margin-bottom: 10px;}
 	.waxon_tm_counter{padding-bottom: 100px;}
-	.waxon_tm_member .list > ul{margin: 0px;}
-	.waxon_tm_member .list > ul > li{width: 100%;padding-left: 0px;}
 	.waxon_tm_timeline .item_list ul li .time span{font-size: 14px;padding: 2px 18px;}
 	.waxon_tm_timeline .item_list ul li .place{padding-left: 0px;}
 	.waxon_tm_timeline .item_list ul li .place h3{font-size: 16px;}
